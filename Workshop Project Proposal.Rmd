@@ -6,13 +6,21 @@ output: html_document
 ---
 
 ## Research Statement
-Mangrove forests act as an essential nutrient cycling ecosystem in tropical and subtropical coastal areas. The productivity of this ecological function has been decreasing as forests are both naturally and anthropogenically disturbed, subsequently affecting the current global mangrove cover. Although several conservation and restoration initiatives have successfully restored or conserved existing forests, the already urbanized areas that replaced historical mangroves are lacking vegetation that can provide any nutrient cycling, thus nutrients in urban coastal areas are more likely to contaminate coastal waters. Mangrove deforestation and coastal eutrophication due to anthropogenic activity can pontentially be ammended by introducing Mangrove Urban Ecological Infrastructure (UEI) combined with a flow-through flume structure to the shoreline. This UEI set up will allow for enclosed sampling in order to obtain nutrient ratios within a known volume in situ. However, before a mangrove UEI is implemented, the nutrient fluxes of the shoreline need to be temporally and spatially measured to significanly represent the area's average nutrient levels.
+  Mangrove forests act as an essential nutrient cycling ecosystem in tropical and subtropical coastal areas. The productivity of this ecological function has been decreasing as forests are both naturally and anthropogenically disturbed, subsequently affecting the current global mangrove cover. Mangrove research usually focuses on measuring and monitoring ecologically important forests often undermining urban smaller patches. However, in urban areas where mangroves have been deforested for developement, ramainding patches are still productive enough to affect nutrient fluxes in the targeted watershed. Therefore it is beneficial to measure how productive these patches are and compare them to well studied fringe forests in the same watershed.   
 
 ## Objectives
-1. To calculate AGM of TN, TP, and TOC/DOC of the targeted urban coastal area using DERM Water Quality data 1988-2013
-2. To spacially distribute nutrient fluxes using DERM WQ sampling well data. 
-3. To project nutrient fluxes for the next 5 years with and without mangrove ecosystem services.
+1. To compare CNP data of soils and mangrove productivity of urban patches with fringe forests
+2. To spacially distribute mangrove patches nutrient fluxes with DERM WQ sampling well data in Biscayne Bay 
+3. To project nutrient budgets for the next 5 years with and without urban mangroves
 
 ## Hypotheses
+1. Urban patch mangrove soil CNP will be comparable to larger mangrove forest CNP when size is factored
+2. DERM water quality data is lower in TN and TP near urban mangrove patches 
+3. Biscayne Bay will be more eutrophied if these urban mangrove patches disappeared
 
-## DataSEt
+## Datasets
+Nutrient CNP of Urban Mangroves (Own dataset)
+DERM Water Quality data from Biscayne Bay Wells nearby cocoplum and matheson hammock patches
+
+## Statistical Analysis
+Multiple Regression analysis of CNP in urban patches and fringe forests

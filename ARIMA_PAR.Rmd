@@ -1,0 +1,38 @@
+---
+title: "Workshop 3_Timeseries Models"
+author: "Marbelys Garriga"
+date: "1/24/2020"
+output: html_document
+---
+# Objectives
+The primary objectives of this analysis is to use ARIMA models to find if Photosynthetic Active Radiation is a more suitable explanatory variable to Net Ecosystem Exchange than salinity to forecast future Net Ecosystem Exchange of a scrub mangrove forest.
+
+# Methods
+## Site Information 
+TS/PH 7 is located 25.19080491, -80.63910514 up Taylor River mainly characterized by scrub mangrove vegetation of the -Rhizophora mangle- species. This is an established FCE LTER site within the Taylor Slough Watershed. 
+
+![Satellite Image of TS/PH7](/Users/Maby/BSC6926/BSC6926/TS7.jpg)
+![Site Photo 5 months before Hurricane Irma: Dr. Edward Castañeda and PhD Student Melinda Martinez Apr. 18, 2017 by Marbelys Garriga](/Users/Maby/BSC6926/BSC6926/TS7_MG.jpg)
+
+## Statistical Analysis
+ Photosynthetic Active Radiation (par; W m−2 day−1)  will be incorporated to the forecast function of the ARIMA model after the temporal dynamics of NEE were adquired. The Augmented Dickey-Fuller Test will be used to test stationarity. Ljung-Box test will test for independece and finally the Akaike Information Criteria (AIC) of the model outputs will be compared to test for model fitness. 
+
+# Results
+![ARIMA.NEE4 SALINITY MODEL](/Users/Maby/BSC6926/BSC6926/Sfit.jpeg)
+
+![ARRIMA.NEE5 PAR MODEL](/Users/Maby/BSC6926/BSC6926/Fitted PAR.jpeg)
+Table 1 
+
+Model | df | AIC
+--- | --- | --- |
+arima.nee2 | 18 | 704.7663
+arima.nee5 | 10 | 683.6937
+arima.nee4 | 9 | 700.7734
+
+
+# Discussion 
+
+Photosynthetic Active Radiation seems to be a better explanatory series of nee than salinity with a lower AIC as you can see in table 1. 
+
+
+

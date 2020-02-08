@@ -1,0 +1,34 @@
+---
+title: "Workshop4_SpeciesDistribution"
+author: "Marbelys Garriga"
+date: "1/31/2020"
+output: html_document
+---
+
+# Objectives
+The primary objective of this analysis is to run a Species Distribution Model (SDM) using the bioclim approach to geographically visualize where *Carnegiea gigantea* is expected to occur.
+
+# Methods
+## Species Information 
+*Carnegiea gigantea* is a large columnar cactus essential to the Sonora Desert, with most of its population established in Sonora, Mexico (Alburquerque *et al.,* 2018).  
+
+## Statistical Analysis
+Using latitude and longitude coordinates where *Carnegiea gigantea* has been observed and abiotic data obtained from WorldClim a bioclim model was fit. Random pseudo-absence points were used to fit the model, as it has been observed to be the most reliable approach for distribution models (Barber-Massin *et al.* 2012). Table 1 shows how there's even representation for each group.  
+
+
+# Results
+![Probability of Occurrance](/Users/Maby/BSC6926/BSC6926/Plot1.jpeg)
+
+![Predicted Suitable Range](/Users/Maby/BSC6926/BSC6926/plot3.jpeg)
+Table 1
+
+Group | Representation
+| --- | --- | 
+1 | 80
+2 | 80
+3 | 80
+4 | 80
+5 | 80
+
+# Discussion (1 paragrapgh)
+According to the generated map, *Carnegiea gigantea* is expected to shift towards the northern area of the Sonora Desert, located in California and Arizona. The bioclim model using pseudo-absent random points approach to incorporate more range to the existing present data, may be a useful method to monitor species distribution as climate change effects are causing ecosystems to transition to more suitable areas.  

@@ -1,0 +1,81 @@
+---
+title: "Project Final"
+author: "Marbelys Garriga"
+date: "3/31/2020"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction 
+
+ Coastal wetlands are particularly vulnerable to Sea Level Rise (SLR) and human disturbance (Dessu et al., 2018). In South Florida, intrusive freshwater management has greatly disturbed natural hydrological flow of the area, causing unprecedented variability of inland and coastal water levels (Milano, 2000). As seas are still rising, continuously advancing forecasting models of water level fluctuations may be a valuable tool to evaluate coastal resilience, which will help with decision-making and city planning. For daily water-level data, the Autoregressive Integrated Moving Average (ARIMA) Time Series modeling method has been used in several different bodies of water, including rivers, lakes, seas, and even ground water reservoirs (de Moraes Takafuji et al., 2019; Masous et al., 2017; Hadi et al., 2013). ARIMA models have also the benefit to include seasonal and even daily variations, introduced as SARIMA (Seasonal ARIMA), which better captures not only variability among seasons, but also the diurnal tidal action experienced in some sites (Khatibi et al., 2014). Although long-term data is usually used to fit ARIMA models, short term data, often more available, may give insight to water-level site variation across a desired coastline or within different bodies of water. In this study, a short-term water depth time series comprising of 15 minute data intervals for the full year of 2018 was used to forecast water level fluctuations using an ARIMA model, as measured water depth is expected to increase with SLR. The goal of this study is to evaluate the forecasting accuracy of the ARIMA model on short-term data. If the fitted ARIMA model forecasts accurately existing 2019 data, it can be assumed that the ARIMA approach can be used to forecast SLR.  
+  
+# Methods
+## Study Site
+
+  Coral Gables Waterway was already in use in the 1920's, as George Merrick, the developer of Coral Gables, advertised gondola rides from The Biltmore Hotel to Tahiti Beach on his "Forty Miles of Water Front" (Parks, 2015). Since then, more canalization has disrupted the historical flow of this waterway that is tidally influenced by its connection to Biscayne Bay. Biscayne Bay is a shallow subtropical marine estuary of approximately 220 square mile in size, located on the Southeast coast of Florida and bordered by urban Miami on West and Northwest of the Bay, and barrier islands and vegetated banks on the East (Milano, 2000). In order to monitor the Coral Gables Watershed (Figure 1). The Watershed was divided by two sites named "Blue Road" (25°43'37.77"N, 80°16'10.68"W) and "Cocoplum" ( 25°42'2.86"N, 80°14'58.22"W) representing the upper and lower ends of the watershed respectively located 2.20 miles apart. 
+
+![Figure 1. North-Dade Drainage Basin Map](/Users/mgarriga/BSC6926/Drainage1.jpg)
+![Figure 2. Blue Road (upper) and Cocoplum (lower) Coral Gables Watersher monitoring Sites](/Users/mgarriga/BSC6926/Fig2.jpg)
+## Data Collection 
+  Data was collected using the Tidal Gauge set-up shown below (Fig. 3). The gauge, Aqua Troll 200 (Figure 4.) is manufactored by In-Situ, integrated into telemetry and SCADA systems and HydroVu™ Data, also provided by the manufacturer. Gauges were set 60cm down a 2 inch PVC pipe, which was secured to a sea wall. All parameters including resistivity, temperature, salinity, density, depth, conductivity, pressure, and total dissolved solids, were recorded every 15 minutes from May 2017 to present. Gauges are calibrated when drifted 100mm of depth from monthly spot check calibrations. It is important to mention, gauges often drift due to biofouling and technitian error, for example there were 3 innacurate calibrations in Cocoplum gauge that disrupted 6 months of data within 2018.
+
+![Figure 3. Tidal Gauge Set-Up](/Users/mgarriga/BSC6926/CGp.jpg)
+![Figure 4. Aqua Troll 200 In-Situ Gauge used in this study](/Users/mgarriga/BSC6926/Aquat.jpg)
+
+## Statistical Analysis
+  Due to having too many issues with calibrations and biofouling on both gauges during the first 2 years of deployment, only data from Blue Road from January 1st 2018 to Dec 1st 2018 was used to fit an ARIMA model. After the data was plotted, some descrepancies in times within montly data were found, leading to obtain highest depth of every high tide event of the year. However, South Florida experiences patterns of semidiurnal and mixed semidiurnal tides, thus the high tide event for each day of the year was averaged when necessary, resulting in 365 high tide observations for the year 2018 for Blue Road. The resulted clean dataset was decomposed using a multiplicative time series analysis to show any seasonal trends or overall patterns in the data the Augmented Dickey Fuller (ADF), autocorrelation functions (ACF) and partial autocorrelation functions (PACF) tests were used to determine stationarity within the data as it is a requirement to fit ARIMA. If data violated stationarity, differentiation function was used. ARIMA was fitted to determine the temporal trends and to later forecast the data. Model fitness was examined by carrying out the Ljung- Box test on its residuals. Salinity and temperature were used as explanatory variables as a means to improve model fitness, and evaluated using the Akaike information criterion (AIC). The best fit models were then used to forecast the next 2 months of water depth in Blue Road and compared to existing January 2019 and February 2019 data from the same gauge. Statistical analyses were performed using the program RStudio including these libraries: library(ggplot2)
+library(zoo) 
+library(tseries)
+library(fracdiff)
+library(forecast) 
+library(xts)
+library(lubridate)
+
+# Results
+  
+  The highest depth observations had a very clear trend following annual tide oscillations observed in figure 5, but according to the the Augmented Dickey Fuller (ADF), autocorrelation functions (ACF) and partial autocorrelation functions (PACF), we reject the hypothesis of non-stationarity and proceeded to use the auto.arima function to fit the best model.
+![Figure 5. Decomposition of Time Series](/Users/mgarriga/BSC6926/FP1.jpeg)
+    
+  ARIMA(1,1,1)(1,0,0)[30] was the best model that fit the data with an AIC value of -883.409. Negative AICs do not necessarily mean lack of fit, but just a missing constant within the likelihood analysis, thus results should be evaluated using the same approach as positive AICs. When the model fit was plotted against the data the trend was followed (Figure 6). Salinity was then included to improve the model, with AIC of -892.67, the resulting automatically fitted model ARIMA(1,1,0)(0,0,1)[30] was used to forecast the next two months (Figure 7). There was no improvement to the model when temperature was added as an explanatory series, with AIC of -882.6547, and therefore not used to do any forecasting.   
+
+
+
+![Figure 6. Graph of Fitted model(red) against Data](/Users/mgarriga/BSC6926/FP2.jpeg)
+
+![Figure 7. Forecast with Improved ARIMA model](/Users/mgarriga/BSC6926/FP3.jpeg)
+
+
+
+# Discussion
+  Accurate, long-term, and quality assured water level data is essential for time series model analysis. In this study, although sea level rise trends were expected to show within a year, actual results highly differed, showing an undervalued forecast of highest water depth for the following months. Although the model had a high AIC, the forecast does not follow the trend recorded in the same gauge from January 1st 2019 to March 1st 2019. Instead, the model shows that the highest depth values will be closer to 1.2m, but recorded data with highest depth value in the month of Janauary 2019 to be 1.4109239m and 1.3909284m in February. Therefore, ARIMA models should not be run on just one year of data, as seasonal trends will not be captured within the model, never able to be included for forecasting. However, in this study salinity did show a significant improvement in the model, which proves the need to include this explanatory variable in future water level fluctuation models. Although temperature did not improve the model in this study, it would be expected to do so, as higher temperatures physically act on water volume producing molecule expansion. This study will be reassessed once two full years of clean data had been recorded and analyzed for any biofouling or technitian error.
+  
+
+# References
+Adamowski, J., Chan, H.F., Prasher, S.O., Ozga-Zielinski, B., & Sliusarieva, A. (2012). Comparison of multiple linear and nonlinear regression, autoregressive integrated moving average, artificial neural network, and wavelet artificial neural network methods for urban water demand forecasting in Montreal, Canada. In 
+
+de Moraes Takafuji, E.H., da Rocha, M.M., & Manzione, R.L. (2019). Groundwater Level Prediction/Forecasting and Assessment of Uncertainty Using SGS and ARIMA Models: A Case Study in the Bauru Aquifer System (Brazil). In  (pp. 487-503)
+
+Dessu, S.B., Price, R.M., Troxler, T.G., & Kominoski, J.S. (2018). Effects of sea-level rise and freshwater management on long-term water levels and water quality in the Florida Coastal Everglades. In  (pp. 164-176)
+Ghashghaie, M., & Nozari, H. (2018). Effect of Dam Construction on Lake Urmia: Time Series Analysis of Water Level via ARIMA. In  (pp. 1541-1553)
+
+Hadi, G., Majid, M., Lee Teang, S., & Nariman, V. (2013). Klang River–level forecasting using ARIMA and ANFIS models. Journal (American Water Works Association), 105, E496
+
+Imani, M., You, R.-J., & Kuo, C.-Y. (2014). Analysis and prediction of Caspian Sea level pattern anomalies observed by satellite altimetry using autoregressive integrated moving average models. In  (pp. 3339-3348)
+
+Khatibi, R., Ghorbani, M.A., Naghipour, L., Jothiprakash, V., Fathima, T.A., & Fazelifard, M.H. (2014). Inter-comparison of time series models of lake levels predicted by several modeling strategies. Journal of Hydrology, 511, 530-545
+
+Liao, J., Gao, L., & Wang, X. (2014). Numerical Simulation and Forecasting of Water Level for Qinghai Lake Using Multi-Altimeter Data Between 2002 and 2012. In  (pp. 609-622)
+
+Masaki, W., Takao, Y., Tomoyuki, T. (2018). LONG-TERM SEA LEVEL CHANGES IN THE PACIFIC/JAPAN'S WATER AND THEIR FUTURE PREDICTION. 74, 1369
+
+Masoud, D., Seyed Ali, A., & Mehdi, V. (2017). Water Level Fluctuation Analysis and Forecast in the Caspian Sea Using Stochastic Time Series models. 
+
+Parks, A.M. (2015). George Merrick, Son of the South Wind : Visionary Creator of Coral Gables. University Press of Florida
+  
+
+
+  

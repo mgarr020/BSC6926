@@ -65,7 +65,7 @@ plot(forecast(arima.depth1, h=60))
 arima.depth1 <-auto.arima(Depth1, trace=TRUE)
 tsdisplay(residuals(arima.depth1), lag.max=45)
 arima.depth1.2 <-arima(WD1, seasonal= list(order=c(2,0,2)))
-tsdisplay(residuals(arima.depth1.2, lag.max= 30)
+
 
 Forecast <- forecast(arima.depth1)
 
@@ -88,8 +88,17 @@ adf.test(diff(sal))
 ccf( diff(sal),WD1, na.action = na.pass, lag.max=40, plot=TRUE)
 
 arima.depthsal <-auto.arima(WD1, xreg=c(diff(sal),0), trace=TRUE)
+tsdisplay(residuals(arima.depthsal), lag.max=45)
 
 AIC(arima.depth1, arima.depthsal )
+
+checkresiduals(arima.depthsal)
+
+par(mfrow=c(1,1))
+plot(WD1 , typ="l"); lines(fitted(arima.depthsal),col="red")
+
+Forecast2 <- forecast(arima.depthsal)
+plot(Forecast2)
 
 #Explanatory series 2: Temperature 
 temp <- ts(BR$Temperature..C., start= 1, frequency=30)
@@ -109,6 +118,8 @@ ccf( diff(temp),WD1, na.action = na.pass, lag.max=40, plot=TRUE)
 arima.depthtemp <-auto.arima(WD1, xreg=c(diff(temp),0), trace=TRUE)
 
 AIC(arima.depth1, arima.depthtemp )
+#Model did not improve
+
 
 
 
